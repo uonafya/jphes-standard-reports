@@ -79,7 +79,7 @@
         $("#reportPeriod").html(period);
         console.log(dhis2.report);
 
-        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:HjZuCR81LTE;Fm1HSgNYTXn;R97qNUSTW85;fYrB2uRkOBk;jYG0Miw3gxh;Fg62JTQXKBc" +
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:eF6i9grD5ya;XoOttIwbO6x;pTTwyI8nWDV;jDOCGV6pDJp;RNnHOQ6Uebl;gjRFKCKRY8E;JxrzCSuNroP" +
             "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
             function( json1 ) {
                 if((json1.rows).length > 0){

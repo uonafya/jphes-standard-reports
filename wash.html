@@ -78,8 +78,8 @@
         $("#ou").html(orgUnit.name);
         $("#reportPeriod").html(period);
         console.log(dhis2.report);
-
-        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:HjZuCR81LTE;Fm1HSgNYTXn;R97qNUSTW85;fYrB2uRkOBk;jYG0Miw3gxh;Fg62JTQXKBc" +
+//WASH Performance
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:eF6i9grD5ya;XoOttIwbO6x;pTTwyI8nWDV;jDOCGV6pDJp;JxrzCSuNroP;LMF6f3nlR5v;AKSjDjP8guv;HX4mUNaOb8E;Hbpf4BUi2C4" +
             "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
             function( json1 ) {
                 if((json1.rows).length > 0){
@@ -98,8 +98,9 @@
                 }
 
             } );
+        //wash targets
 
-        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:J7T6ltujYx7;hA56P2gM6Uf;G6TbhAofOJg;Gg5QNicshDD;ST9KsMP3aOy;mbY9ZLZ2rxK" +
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:ITJr6BQnYji;JX3nPEy2DbA;DnlSabKJIu7;erGIj31uu3e;UO6pD5QxzOi;LFedJLGIqkN;siwS1HZGgVr;ICZHF3s0V6X" +
             "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
             function( json2 ) {
                 if((json2.rows).length > 0){
@@ -118,9 +119,9 @@
                 }
 
             } );
-
-        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:w3CeTx2p1t3;W9OAqfwD3oF;" +
-            "CPYl88f37sp;XAx0illPRMQ;pt5lAxR5R88;PyqDjxBYx9P&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
+//wash percengtage achievement
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:z6IwfRxcyNZ;dzpWHevYxlQ;e6nqvph3gfS;uEz3qJbYPxw;bFux9IvBkwr;RDOQtVh1gxr;QQ47vW8PTE7;naGv9EMDDjG" +
+            "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
             function( json ) {
                 if((json.rows).length > 0){
                     for(var i = 0; i < (json.rows).length; i++){
@@ -155,7 +156,7 @@
 
 </script> </span></p>
 
-<h3><span style="font-size:14px;">Nutrition Performance</span></h3>
+<h3><span style="font-size:14px;">WASH Performance</span></h3>
 
 <h3><span id="ou" style="font-size:14px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="reportPeriod" style="font-size:14px;">&nbsp;</span> Report</h3>
 
@@ -201,12 +202,60 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><span style="font-size:12px;"></span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td colspan="4"><span style="font-size:12px; font-weight: bold;">Standard: 3.1.8.1-2 Number of people in target areas gaining access to improved drinking water supply</span></td>
                 </tr>
+                <tr>
+                    <td style="text-align: right;"><span style="font-size:12px;">Male</span></td>
+                    <td><span id="LMF6f3nlR5v" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="ITJr6BQnYji" style="font-size:12px;"></span></td>
+                    <td><span id="z6IwfRxcyNZ" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><span style="font-size:12px;">Female</span></td>
+                    <td><span id="AKSjDjP8guv" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="JX3nPEy2DbA" style="font-size:12px;"></span></td>
+                    <td><span id="dzpWHevYxlQ" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span style="font-size:12px; font-weight: bolder;">Standard: 3.1.8.2-2 Number of people in target areas gaining access to improved sanitation facilities as a result of USG assistance</span></td>
 
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><span style="font-size:12px;">Male</span></td>
+                    <td><span id="HX4mUNaOb8E" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="DnlSabKJIu7" style="font-size:12px;"></span></td>
+                    <td><span id="e6nqvph3gfS" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><span style="font-size:12px;">Female</span></td>
+                    <td><span id="Hbpf4BUi2C4" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="erGIj31uu3e" style="font-size:12px;"></span></td>
+                    <td><span id="uEz3qJbYPxw" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Standard: 3.1.8.2-3 Number of improved toilets provided in institutional settings</span></td>
+                    <td><span id="JxrzCSuNroP" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="UO6pD5QxzOi" style="font-size:12px;"></span></td>
+                    <td><span id="bFux9IvBkwr" style="font-size:12px;">&nbsp;</span></td>
+                <tr>
+                    <td><span style="font-size:12px;">Standard: 3.1.6.8-5 Number of communities certified as open defecation free as a result of USG assistance</span></td>
+                    <td><span id="jDOCGV6pDJp" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="LFedJLGIqkN" style="font-size:12px;"></span></td>
+                    <td><span id="RDOQtVh1gxr" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Standard: 3.1.6.8-4 Number of liters of drinking water disinfected with point-of-use treatment products</span></td>
+                    <td><span id="pTTwyI8nWDV" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="siwS1HZGgVr" style="font-size:12px;"></span></td>
+                    <td><span id="QQ47vW8PTE7" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Standard: 3.1.6.8-1 Percentage of households with soap and water at a handwashing station commonly used by family members</span></td>
+                    <td><span id="XoOttIwbO6x" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="ICZHF3s0V6X" style="font-size:12px;"></span></td>
+                    <td><span id="naGv9EMDDjG" style="font-size:12px;">&nbsp;</span></td>
+
+                </tr>
                 </tbody>
             </table>
         </div>
