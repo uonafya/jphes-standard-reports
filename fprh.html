@@ -79,7 +79,8 @@
         $("#reportPeriod").html(period);
         console.log(dhis2.report);
 
-        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:HjZuCR81LTE;Fm1HSgNYTXn;R97qNUSTW85;fYrB2uRkOBk;jYG0Miw3gxh;Fg62JTQXKBc" +
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:LO82gr1TWLO.HllvX50cXC0;Ip5yoU6shDQ.HllvX50cXC0;OdOuVJFLPcX.HllvX50cXC0;" +
+            "KBBqoa2QB7C.HllvX50cXC0;fFHrUCoF1dG.HllvX50cXC0;L2a4rvebe8R.G9dsIX6YwR6;L2a4rvebe8R.IhtLhkHwYrQ;XEVaFYluMsT.HllvX50cXC0" +
             "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
             function( json1 ) {
                 if((json1.rows).length > 0){
@@ -99,7 +100,8 @@
 
             } );
 
-        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:J7T6ltujYx7;hA56P2gM6Uf;G6TbhAofOJg;Gg5QNicshDD;ST9KsMP3aOy;mbY9ZLZ2rxK" +
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:Mdkd9fMQ5Hs.HllvX50cXC0;Kg46HxvJBRG.HllvX50cXC0;LtvUWDeywUM.HllvX50cXC0;" +
+            "NIZxsTaJLNy.HllvX50cXC0;AjQLlfjNZL6.HllvX50cXC0;xVzGmAXrv0C.G9dsIX6YwR6;xVzGmAXrv0C.IhtLhkHwYrQ;zo6UW9Ou6ak.HllvX50cXC0" +
             "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
             function( json2 ) {
                 if((json2.rows).length > 0){
@@ -202,45 +204,57 @@
                 <tbody>
                 <tr>
                     <td><span style="font-size:12px;">Standard: 3.1.7.1-1 Couple-years of protection (CYP) in USG-supported programs</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="fFHrUCoF1dG.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="AjQLlfjNZL6.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
-                    <td><span style="font-size:12px;">Standard: 3.1.7.1-2 Percent of service delivery points (SDP) that experience stock out at any time during the reporting period of a contraceptive method that the SDP is expected to provide</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td colspan="4"><span style="font-size:12px; font-weight: bold;">Standard: 3.1.7.1-2 Percent of service delivery points (SDP) that experience stock out at any time during the reporting period of a contraceptive method that the SDP is expected to provide</span></td>
+                    <td><span id="L2a4rvebe8R.IhtLhkHwYrQ" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="xVzGmAXrv0C.IhtLhkHwYrQ" style="font-size:12px;"></span></td>
+                    <td><span id="dKHULLjM5Kh" style="font-size:12px;">&nbsp;</span></td>
                 </tr>
+                <!--<tr>-->
+                    <!--<td style="text-align: right;"><span style="font-size:12px;">Numerator: Number of service delivery sites providing family planning(FP) counselling and/or services</span></td>-->
+                    <!--<td><span id="L2a4rvebe8R.IhtLhkHwYrQ" style="font-size:12px;">&nbsp;</span></td>-->
+                    <!--<td><span id="xVzGmAXrv0C.IhtLhkHwYrQ" style="font-size:12px;"></span></td>-->
+                    <!--<td><span id="" style="font-size:12px;">&nbsp;</span></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td style="text-align: right;"><span style="font-size:12px;">Denominator: Number of service delivery points (SDP) that experience stock out at any time during the reporting period of a contraceptive method that the SDP is expected to provide</span></td>-->
+                    <!--<td><span id="L2a4rvebe8R.G9dsIX6YwR6" style="font-size:12px;">&nbsp;</span></td>-->
+                    <!--<td><span id="xVzGmAXrv0C.G9dsIX6YwR6" style="font-size:12px;"></span></td>-->
+                    <!--<td><span id="" style="font-size:12px;">&nbsp;</span></td>-->
+                <!--</tr>-->
                 <tr>
                     <td><span style="font-size:12px;">Standard: 3.1.7.1-4 Number of additional USG-assisted community health workers (CHWs) providing family planning (FP) information</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td><span id="XEVaFYluMsT.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="zo6UW9Ou6ak.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="ps0KhqpG8Qx" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number  of new policies developed with USG assistance to improve access and use of FP/RH, MCH and Nutrition services, by stage of development</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td><span id="Ip5yoU6shDQ.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="Kg46HxvJBRG.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="yk2f5ZwItKd" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of new Guidelines or Strategic Plans developed with USG assistance to improve access to and use of FP/RH</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td><span id="LO82gr1TWLO.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="Mdkd9fMQ5Hs.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="OF0D3Ws5Mor" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of policies or guidelines developed or changed to improve access to and use of FP/RH services</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td><span id="OdOuVJFLPcX.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="LtvUWDeywUM.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="gOFvQNrszWe" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Percent increase on contraceptive commodity reporting rates</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;"></span></td>
+                    <td><span id="KBBqoa2QB7C.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="NIZxsTaJLNy.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="CgJ7x52GzVV" style="font-size:12px;"></span></td>
                 </tr>
                 </tbody>
             </table>
