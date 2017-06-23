@@ -1,0 +1,278 @@
+<script>
+    jQuery(document).ready( function() {
+
+//    getreport();
+
+    });
+</script>
+<script type="text/javascript" src="../dhis-web-commons/oust/oust.js?_rev=20029"></script>
+<script type="text/javascript" src="javascript/dataCompleteness.js?_rev=20029"></script>
+<script type="text/javascript" src="../api/files/script?_rev=20029"></script>
+<script>
+    var currentPeriodOffset = 0;
+    var periodTypeFactory = new PeriodType();
+
+
+    function displayPeriods(){
+        var periodType = $( "#periodType" ).val();
+        var periods = periodTypeFactory.get( periodType ).generatePeriods(currentPeriodOffset );
+        periods = periodTypeFactory.reverse( periods );
+        periods = periodTypeFactory.filterFuturePeriodsExceptCurrent( periods );
+        $( "#periodId" ).removeAttr( "disabled" );
+        clearListById( "periodId" );
+
+        for ( i in periods )
+        {
+            addOptionById( "periodId", periods[i].iso, periods[i].name );
+        }
+    }
+
+    function displayNextPeriods(){
+        if ( currentPeriodOffset < 0 ) // Cannot display future periods
+        {
+            currentPeriodOffset++;
+            displayPeriods();
+        }
+    }
+
+    function displayPreviousPeriods(){
+        currentPeriodOffset--;
+        displayPeriods();
+    }
+    var dateFormat = 'yy-mm-dd';
+    dhis2.period.format = 'yyyy-mm-dd';
+    dhis2.period.calendar = $.calendars.instance('gregorian');
+    dhis2.period.generator = new dhis2.period.PeriodGenerator( dhis2.period.calendar, dhis2.period.format );
+    dhis2.period.picker = new dhis2.period.DatePicker( dhis2.period.calendar, dhis2.period.format );
+</script>
+
+<style type="text/css">.container-content{
+    overflow-x: auto;
+}
+</style>
+<p><span style="font-size:12px;">
+<style type="text/css">table.tableizer-table {
+    font-size: 12px;
+    border: 1px solid #CCC;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.tableizer-table td {
+    padding: 4px;
+    margin: 3px;
+    border: 1px solid #CCC;
+}
+.tableizer-table th {
+    background-color: #104E8B;
+    color: #FFF;
+    font-weight: bold;
+}
+.tableizer-table span {
+    width: 1em;
+    word-wrap: break-word;
+}
+</style>
+<script type="text/javascript">
+    function getreport() {
+        var orgUnit = dhis2.report.organisationUnit;
+        var period = $( "#periodId" ).val();
+        $("#ou").html(orgUnit.name);
+        $("#reportPeriod").html(period);
+        console.log(dhis2.report);
+
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:LO82gr1TWLO.HllvX50cXC0;Ip5yoU6shDQ.HllvX50cXC0;OdOuVJFLPcX.HllvX50cXC0;" +
+            "KBBqoa2QB7C.HllvX50cXC0;fFHrUCoF1dG.HllvX50cXC0;L2a4rvebe8R.G9dsIX6YwR6;L2a4rvebe8R.IhtLhkHwYrQ;XEVaFYluMsT.HllvX50cXC0" +
+            "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
+            function( json1 ) {
+                if((json1.rows).length > 0){
+                    for(var i = 0; i < (json1.rows).length; i++){
+                        if(json1.rows[i][2]!=""){
+                            $("span#"+json1.rows[i][0]).parent().css("text-align", "center");
+                            $("span#"+json1.rows[i][0]).css("font-weight", "bold");
+                            var id = json1.rows[i][0];
+                            var str = id.split(".");
+
+                            $( "#"+str[0]+ "-"+str[1] ).html(Math.round(json1.rows[i][2]));
+
+                        } else {
+                            $( "#"+json1.rows[i][0] ).html("0");
+                        }
+                    }
+                }else {
+                    alert("No performance data available for selected period");
+                }
+
+            } );
+
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:Mdkd9fMQ5Hs.HllvX50cXC0;Kg46HxvJBRG.HllvX50cXC0;LtvUWDeywUM.HllvX50cXC0;" +
+            "NIZxsTaJLNy.HllvX50cXC0;AjQLlfjNZL6.HllvX50cXC0;xVzGmAXrv0C.G9dsIX6YwR6;xVzGmAXrv0C.IhtLhkHwYrQ;zo6UW9Ou6ak.HllvX50cXC0" +
+            "&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
+            function( json2 ) {
+                if((json2.rows).length > 0){
+                    for(var i = 0; i < (json2.rows).length; i++){
+                        if(json2.rows[i][2]!=""){
+                            $("span#"+json2.rows[i][0]).parent().css("text-align", "center");
+                            $("span#"+json2.rows[i][0]).css("font-weight", "bold");
+
+                            var id = json2.rows[i][0];
+                            var str = id.split(".");
+
+                            $( "#"+str[0]+ "-"+str[1] ).html(Math.round(json2.rows[i][2]));
+
+                        } else {
+                            $( "#"+json2.rows[i][0] ).html("0");
+                        }
+                    }
+                }else {
+                    alert("No target data available for selected period");
+                }
+
+            } );
+
+        $.get("../api/analytics.json?dimension=pe:"+period+"&dimension=dx:yk2f5ZwItKd;OF0D3Ws5Mor;gOFvQNrszWe;CgJ7x52GzVV;" +
+                "dKHULLjM5Kh;ZgJaHjH3KQN;ps0KhqpG8Qx;Z5jOBt262AK&filter=ou:"+orgUnit.id+"&displayProperty=NAME&hierarchyMeta=true&showHierarchy=true&&tableLayout=true",
+            function( json ) {
+                if((json.rows).length > 0){
+                    for(var i = 0; i < (json.rows).length; i++){
+                        if(json.rows[i][2]!=""){
+                            $("span#"+json.rows[i][0]).css("color", "white");
+                            $("span#"+json.rows[i][0]).parent().css("text-align", "center");
+                            $("span#"+json.rows[i][0]).css("font-weight", "bold");
+
+                            $( "#"+json.rows[i][0]).html(json.rows[i][2]);
+                            console.log(json.rows);
+
+                            if(json.rows[i][2] < 25.0){
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "red");
+                            }else if(json.rows[i][2] < 50.0){
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "orange");
+                                $("span#"+json.rows[i][0]).css("color", "black");
+                            }else if(json.rows[i][2] < 75.0){
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "yellow");
+                                $("span#"+json.rows[i][0]).css("color", "black");
+                            }
+                            else if(json.rows[i][2] < 200.0){
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "green");
+                            }else {
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "blue");
+                            }
+
+                        } else {
+                            $( "#"+json.rows[i][0] ).html("0");
+                            $("span#"+json.rows[i][0]).parent().css("background-color", "red");
+                        }
+                    }
+                }else {
+                    alert("No data available for selected period");
+                }
+
+            } );
+
+    };
+
+</script> </span></p>
+
+<h3><span style="font-size:14px;">FPRH Performance</span></h3>
+
+<h3><span id="ou" style="font-size:14px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="reportPeriod" style="font-size:14px;">&nbsp;</span> Report</h3>
+
+<div class="inputSection" style="padding-bottom: 10px;">
+    <label>Report period</label><br>
+    <select id="periodType" name="periodType" style="width:174px" onchange="displayPeriods()">
+        <option value="">[ Select period type ]</option>
+        <!--<option value="Daily">Daily</option>-->
+        <!--<option value="Weekly">Weekly</option>-->
+        <!--<option value="Monthly">Monthly</option>-->
+        <!--<option value="BiMonthly">Bimonthly</option>-->
+        <!--<option value="Quarterly">Quarterly</option>-->
+        <!--<option value="SixMonthly">Six-monthly</option>-->
+        <!--<option value="SixMonthlyApril">Six-monthly April</option>-->
+        <!--<option value="Yearly">Yearly</option>-->
+        <!--<option value="FinancialApril">Financial-April</option>-->
+        <!--<option value="FinancialJuly">Financial-July</option>-->
+        <option value="FinancialOct">Financial-Oct</option>
+    </select>
+    <input type="button" style="width:75px" value="Prev year" onclick="displayPreviousPeriods()" />
+    <input type="button" style="width:75px" value="Next year" onclick="displayNextPeriods()" /><br>
+
+    <select id="periodId" name="periodId" style="width:330px" disabled="disabled">
+    </select>
+</div>
+<p></p>
+<p></p>
+<button VALUE="submit" ONCLICK="getreport()">Submit</button>
+<p></p>
+<p></p>
+
+<div>
+    <div class="left" id="tabs">
+        <div class="container-content" id="tab-1" style="width:80%">
+            <table class="tableizer-table">
+                <thead>
+                <tr class="tableizer-firstrow">
+                    <td style="background-color: rgb(16, 78, 139); text-align: center;"><span style="font-size:12px;"><strong><span style="font-size:16px;"><span style="color: rgb(255, 255, 224);">Indicator</span></span></strong></span></td>
+                    <td style="background-color: rgb(16, 78, 139); text-align: center;"><span style="font-size:12px;"><strong><span style="font-size:16px;"><span style="color: rgb(255, 255, 224);">Performance</span></span></strong></span></td>
+                    <td style="background-color: rgb(16, 78, 139); text-align: center;"><span style="font-size:12px;"><strong><span style="font-size:16px;"><span style="color: rgb(255, 255, 224);">Target</span></span></strong></span></td>
+                    <td style="background-color: rgb(16, 78, 139); text-align: center;"><span style="font-size:12px;"><strong><span style="font-size:16px;"><span style="color: rgb(255, 255, 224);">% Achievement</span></span></strong></span></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span style="font-size:12px;">Standard: 3.1.7.1-1 Couple-years of protection (CYP) in USG-supported programs</span></td>
+                    <td><span id="fFHrUCoF1dG-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="AjQLlfjNZL6-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="ZgJaHjH3KQN" style="font-size:12px;"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px; font-weight: bold;">Standard: 3.1.7.1-2 Percent of service delivery points (SDP) that experience stock out at any time during the reporting period of a contraceptive method that the SDP is expected to provide</span></td>
+                    <td><span id="L2a4rvebe8R-IhtLhkHwYrQ" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="xVzGmAXrv0C-IhtLhkHwYrQ" style="font-size:12px;"></span></td>
+                    <td><span id="Z5jOBt262AK" style="font-size:12px;">&nbsp;</span></td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td style="text-align: right;"><span style="font-size:12px;">Numerator: Number of service delivery sites providing family planning(FP) counselling and/or services</span></td>-->
+                    <!--<td><span id="L2a4rvebe8R.IhtLhkHwYrQ" style="font-size:12px;">&nbsp;</span></td>-->
+                    <!--<td><span id="xVzGmAXrv0C.IhtLhkHwYrQ" style="font-size:12px;"></span></td>-->
+                    <!--<td><span id="" style="font-size:12px;">&nbsp;</span></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td style="text-align: right;"><span style="font-size:12px;">Denominator: Number of service delivery points (SDP) that experience stock out at any time during the reporting period of a contraceptive method that the SDP is expected to provide</span></td>-->
+                    <!--<td><span id="L2a4rvebe8R.G9dsIX6YwR6" style="font-size:12px;">&nbsp;</span></td>-->
+                    <!--<td><span id="xVzGmAXrv0C.G9dsIX6YwR6" style="font-size:12px;"></span></td>-->
+                    <!--<td><span id="" style="font-size:12px;">&nbsp;</span></td>-->
+                <!--</tr>-->
+                <tr>
+                    <td><span style="font-size:12px;">Standard: 3.1.7.1-4 Number of additional USG-assisted community health workers (CHWs) providing family planning (FP) information</span></td>
+                    <td><span id="XEVaFYluMsT-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="zo6UW9Ou6ak-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="ps0KhqpG8Qx" style="font-size:12px;"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Custom: Number  of new policies developed with USG assistance to improve access and use of FP/RH, MCH and Nutrition services, by stage of development</span></td>
+                    <td><span id="Ip5yoU6shDQ-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="Kg46HxvJBRG-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="yk2f5ZwItKd" style="font-size:12px;"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Custom: Number of new Guidelines or Strategic Plans developed with USG assistance to improve access to and use of FP/RH</span></td>
+                    <td><span id="LO82gr1TWLO-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="Mdkd9fMQ5Hs-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="OF0D3Ws5Mor" style="font-size:12px;"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Custom: Number of policies or guidelines developed or changed to improve access to and use of FP/RH services</span></td>
+                    <td><span id="OdOuVJFLPcX-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="LtvUWDeywUM-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="gOFvQNrszWe" style="font-size:12px;"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:12px;">Custom: Percent increase on contraceptive commodity reporting rates</span></td>
+                    <td><span id="KBBqoa2QB7C-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="NIZxsTaJLNy-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="CgJ7x52GzVV" style="font-size:12px;"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
