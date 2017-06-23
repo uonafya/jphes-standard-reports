@@ -88,7 +88,7 @@
                         if(json1.rows[i][2]!=""){
                             $("span#"+json1.rows[i][0]).parent().css("text-align", "center");
                             $("span#"+json1.rows[i][0]).css("font-weight", "bold");
-                            $( "#"+json1.rows[i][0] ).html( json1.rows[i][2] );
+                            $( "#"+json1.rows[i][0] ).html(Math.round(json1.rows[i][2]));
 
                         } else {
                             $( "#"+json1.rows[i][0] ).html("0");
@@ -107,13 +107,16 @@
             function( json2 ) {
                 if((json2.rows).length > 0){
                     for(var i = 0; i < (json2.rows).length; i++){
+                        var id = json2.rows[i][0];
+                        var str = id.split(".");
+                        var rid = str[0]+"-"+str[1];
                         if(json2.rows[i][2]!=""){
-                            $("span#"+json2.rows[i][0]).parent().css("text-align", "center");
-                            $("span#"+json2.rows[i][0]).css("font-weight", "bold");
-                            $( "#"+json2.rows[i][0] ).html( json2.rows[i][2] );
+                            $("span#"+rid).parent().css("text-align", "center");
+                            $("span#"+rid).css("font-weight", "bold");
+                            $( "#"+rid).html(Math.round(json2.rows[i][2]));
 
                         } else {
-                            $( "#"+json2.rows[i][0] ).html("0");
+                            $( "#"+rid ).html("0");
                         }
                     }
                 }else {
@@ -136,9 +139,12 @@
                             if(json.rows[i][2] < 25.0){
                                 $("span#"+json.rows[i][0]).parent().css("background-color", "red");
                             }else if(json.rows[i][2] < 50.0){
-                                $("span#"+json.rows[i][0]).parent().css("background-color", "yellow");
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "orange");
                                 $("span#"+json.rows[i][0]).css("color", "black");
                             }else if(json.rows[i][2] < 75.0){
+                                $("span#"+json.rows[i][0]).parent().css("background-color", "yellow");
+                            }
+                            else if(json.rows[i][2] < 200.0){
                                 $("span#"+json.rows[i][0]).parent().css("background-color", "green");
                             }else {
                                 $("span#"+json.rows[i][0]).parent().css("background-color", "blue");
@@ -167,16 +173,16 @@
     <label>Report period</label><br>
     <select id="periodType" name="periodType" style="width:174px" onchange="displayPeriods()">
         <option value="">[ Select period type ]</option>
-        <option value="Daily">Daily</option>
-        <option value="Weekly">Weekly</option>
-        <option value="Monthly">Monthly</option>
-        <option value="BiMonthly">Bimonthly</option>
-        <option value="Quarterly">Quarterly</option>
-        <option value="SixMonthly">Six-monthly</option>
-        <option value="SixMonthlyApril">Six-monthly April</option>
-        <option value="Yearly">Yearly</option>
-        <option value="FinancialApril">Financial-April</option>
-        <option value="FinancialJuly">Financial-July</option>
+        <!--<option value="Daily">Daily</option>-->
+        <!--<option value="Weekly">Weekly</option>-->
+        <!--<option value="Monthly">Monthly</option>-->
+        <!--<option value="BiMonthly">Bimonthly</option>-->
+        <!--<option value="Quarterly">Quarterly</option>-->
+        <!--<option value="SixMonthly">Six-monthly</option>-->
+        <!--<option value="SixMonthlyApril">Six-monthly April</option>-->
+        <!--<option value="Yearly">Yearly</option>-->
+        <!--<option value="FinancialApril">Financial-April</option>-->
+        <!--<option value="FinancialJuly">Financial-July</option>-->
         <option value="FinancialOct">Financial-Oct</option>
     </select>
     <input type="button" style="width:75px" value="Prev year" onclick="displayPreviousPeriods()" />
@@ -207,67 +213,67 @@
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of women who received at least 4 ANC visits during the  latest pregnancy during a specified time period</span></td>
                     <td><span id="GxppxEPZrVS" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="osAT6WrYjLT.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="osAT6WrYjLT-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="CUAD6hlDeZJ" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of births in a given year attended by a skilled birth attendant (SBA) such as a doctor, nurse, or midwife</span></td>
                     <td><span id="DQHaMlayYk7" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="anjHkoHoJwI.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="anjHkoHoJwI-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="MR8cmvApDwu" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of women who had a live birth in the same specified period</span></td>
                     <td><span id="bL2dOnTNSsw" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="e9oWASlQzt9.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="e9oWASlQzt9-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="s2byIq7ygPc" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of children 12-23 months of age who received measles vaccine by the time they were 12 months of age</span></td>
                     <td><span id="tM7z65GIEV5" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="BaZlUsrlVXP.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="BaZlUsrlVXP-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="mzpr12IRrCK" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of children age 12-23 months of age who received third does of DPT (Diptheria, Pertussis, Tetanus) vaccine</span></td>
                     <td><span id="Qrk8i6Wxv1w" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="UQm7qMjnIEZ.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="UQm7qMjnIEZ-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="mIxQlzyegV4" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of children who have received the third dose of pneumococcal conjugate vaccine by 12 months of age</span></td>
                     <td><span id="DJkqkMlZDPx" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="S7beBW132zP.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="S7beBW132zP-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="c1if6dpjWPW" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;"></span>Number of children under one fully immunized</td>
                     <td><span id="nnWU3fXrdgL" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="dMxahS6FN6f-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="yIyWE00lgi8" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of children under one year who receive three doses of OPV excluding birth polio</span></td>
                     <td><span id="BsMBVPJR8VP" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="CzM4afuSRrt-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="TcoIQobmSh3" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Number of living children Under 12 months</span></td>
                     <td><span id="ljiGsF6N8XF" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="dMxahS6FN6f.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="v76VqGBsP3l-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="KlzxFLqFlPz" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of children under five years old with diarrhea who received Oral Rehydration Therapy (ORT), defined as receiving Oral Rehydration Salt (ORS) solution</span></td>
                     <td><span id="oTdi1akQayS" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="hDMvvQNo8hn.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="hDMvvQNo8hn-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="wElfAzHjsO5" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Cust: Number of children under five years of age who were ill with diarrhea</span></td>
                     <td><span id="d56cKL4C0lk" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="o86Eexzbn85.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="o86Eexzbn85-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="VZSq7FScFp1" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
@@ -277,19 +283,19 @@
                 <tr>
                     <td><span style="font-size:12px;">BeMONC</span></td>
                     <td><span id="zbxnjskS1kF" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="qvJ7nQxudCX.I0q6bcGoQjP" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="qvJ7nQxudCX-I0q6bcGoQjP" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="Fiukh5ZJFgs" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">CeMONC</span></td>
                     <td><span id="guQVVfmThY3" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="qvJ7nQxudCX.rcYc8tKldbt" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="qvJ7nQxudCX-rcYc8tKldbt" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="D5Py85CpviK" style="font-size:12px;"></span></td>
                 </tr>
                 <tr>
                     <td><span style="font-size:12px;">Custom: Number of babies who received postnatal care within two days of childbirth in USG-supported programs</span></td>
                     <td><span id="F63ZPZ6L3Fg" style="font-size:12px;">&nbsp;</span></td>
-                    <td><span id="rESv9AsqpgQ.HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
+                    <td><span id="rESv9AsqpgQ-HllvX50cXC0" style="font-size:12px;">&nbsp;</span></td>
                     <td><span id="YbptY9TFRXi" style="font-size:12px;"></span></td>
                 </tr>
                 </tbody>
